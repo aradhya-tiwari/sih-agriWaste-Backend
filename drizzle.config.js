@@ -4,6 +4,6 @@ export default {
     out: './drizzle/migrations',
     driver: 'turso',
     dbCredentials: {
-      url: "file:./drizzle/dev.db"
+      url: "file:./drizzle/dev.sqlite"
     }
   }
