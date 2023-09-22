@@ -1,12 +1,13 @@
 import { relations, sql } from 'drizzle-orm';
-import { index, integer, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
+import { index, integer, blob, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 
 export const farmWaste = sqliteTable('farmWaste', {
     id: integer('id').primaryKey({ autoIncrement: true }),
     farmName: text('farmName').notNull(),
     farmSize: integer('farmSize'),
     latitude: real('latitude'),
-    longitude: real('longitude'),
+    longitude: real("longitude"),
+    image: blob('image'),
     assignedTo: integer('assignedTo').default(null)
 
 });
@@ -22,6 +23,8 @@ export const farmIndustrialRelation = relations(farmWaste, ({ one }) => ({
 export const industrialist = sqliteTable('industrialist', {
     id: integer('id').primaryKey({ autoIncrement: true }),
     name: text('name').notNull(),
+    password: text("password").notNull(),
+    address: text("address"),
     premium: integer('premium', { mode: 'boolean' }).default(0)
 })
 

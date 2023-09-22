@@ -7,12 +7,16 @@ import { farmWaste, industrialist } from './drizzle/schema.js';
 import { db } from './lib/db.js';
 import fs from 'fs'
 import { _farmWaste } from './routes/farmWaste.js';
+import { _industrialist } from './routes/industrialist.js';
 
 
 const app = express()
 app.use(express.json());
 
+
+
 app.use("/farm-waste", _farmWaste)
+app.use("/industrialist", _industrialist)
 app.get('/', async (req, res) => {
     let ress = await db.select().from(farmWaste).fullJoin(industrialist, eq(farmWaste.assignedTo, industrialist.id))
     console.log(ress)
