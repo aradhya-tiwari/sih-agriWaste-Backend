@@ -30,8 +30,15 @@ _farmWaste.post("/", async (req, res) => {
     }
 })
 
-_farmWaste.put('/assign', async (req, res) => {
+_farmWaste.post('/assign', async (req, res) => {
+    // to means industrials
+    // and id is of farm
     const { id, to } = req.body;
-    let updt = await db.update(farmWaste).set({ assignedTo: to }).where(eq(farmWaste.id, id)).returning({ updatetion: farmWaste.assignedTo })
-    res.send(updt)
+    console.log(id, to)
+
+    try {
+        let updt = await db.update(farmWaste).set({ assignedTo: to }).where(eq(farmWaste.id, id)).returning({ updatetion: farmWaste.assignedTo })
+        res.send(updt)
+        console.log("Got assign request")
+    } catch (e) { console.log("error aa rha hai :-.("); res.send(e) }
 })

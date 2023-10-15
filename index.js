@@ -14,7 +14,10 @@ import { _industrialist } from './routes/industrialist.js';
 const app = express()
 app.use(express.json());
 
-
+const corsOption = {
+    origin: ['http://localhost:4321'],
+};
+app.use(cors(corsOption));
 
 app.use("/farm-waste", _farmWaste)
 app.use("/industrialist", _industrialist)
