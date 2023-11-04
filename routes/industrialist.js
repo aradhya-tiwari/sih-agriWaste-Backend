@@ -13,8 +13,13 @@ export const _industrialist = express.Router()
 
 
 _industrialist.get('/', async (req, res) => {
-    if (process.env.BRANCH == "DEVELOPMENT")
-        console.log(process.env.BRANCH)
+    console.log(req.cookies)
+    // if (!req.cookies)
+    // res.cookie("DEmo", Date.now(), { maxAge: 15000 })
+
+    // if (process.env.BRANCH == "DEVELOPMENT")
+    //     console.log(process.env.BRANCH)
+
     let rs = await getAll()
     res.send(rs)
 })
